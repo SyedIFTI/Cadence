@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Instrument Sans Variable", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+
+  --color-page: #f3f5f8;
+  --color-ink: #14213d;
+  --color-muted: #56617a;
+  --color-line: #dfe4ec;
+  --color-brand: #2370cd;
+  --color-brand-soft: #e6f0fc;
+
+  /* Chart colours: speech, filler, pause (checked for colour-blind safety) */
+  --color-speech: #257de0;
+  --color-filler: #f47230;
+  --color-pause: #00b894;
+}
+
+@layer base {
+  body { @apply bg-page text-ink font-sans antialiased; }
+  h1, h2, h3 { @apply font-display; }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  :focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+}
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-white p-6; }
+  .btn, .btn-primary, .btn-quiet { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 font-medium transition-colors disabled:opacity-50; }
+  .btn-primary { @apply bg-brand text-white hover:bg-[#1b64be]; }
+  .btn-quiet { @apply border border-line bg-white hover:bg-page; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
