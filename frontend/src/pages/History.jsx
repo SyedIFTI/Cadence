@@ -42,18 +42,19 @@ export default function History() {
           <div className="h-48">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={trend} margin={{ top: 8, right: 12, left: -20, bottom: 0 }}>
-                <CartesianGrid vertical={false} stroke="#dfe4ec" />
-                <XAxis dataKey="number" tick={{ fontSize: 12, fill: '#56617a' }} tickLine={false} stroke="#dfe4ec" />
-                <YAxis domain={[0, 100]} tick={{ fontSize: 12, fill: '#56617a' }} tickLine={false} axisLine={false} />
-                <Tooltip formatter={(v) => [v, 'Score']} labelFormatter={(_, p) => p?.[0]?.payload.title ?? ''} />
-                <Line dataKey="score" stroke="#257de0" strokeWidth={2} dot={{ r: 4, fill: '#257de0' }} isAnimationActive={false} />
+                <CartesianGrid vertical={false} stroke="var(--color-line)" />
+                <XAxis dataKey="number" tick={{ fontSize: 12, fill: 'var(--color-muted)' }} tickLine={false} stroke="var(--color-line)" />
+                <YAxis domain={[0, 100]} tick={{ fontSize: 12, fill: 'var(--color-muted)' }} tickLine={false} axisLine={false} />
+                <Tooltip contentStyle={{ background: 'var(--color-surface)', borderColor: 'var(--color-line)', color: 'var(--color-ink)', borderRadius: 8 }} cursor={{ stroke: 'var(--color-muted)' }}
+                  formatter={(v) => [v, 'Score']} labelFormatter={(_, p) => p?.[0]?.payload.title ?? ''} />
+                <Line dataKey="score" stroke="var(--color-speech)" strokeWidth={2} dot={{ r: 4, fill: 'var(--color-speech)' }} isAnimationActive={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </Section>
       )}
       {reports?.length > 0 && (
-        <div className="overflow-x-auto rounded-2xl border border-line bg-white">
+        <div className="overflow-x-auto rounded-2xl border border-line bg-surface">
           <table className="w-full min-w-[40rem] text-left">
             <thead className="border-b border-line text-sm text-muted">
               <tr>{['Speech', 'Score', 'Pace', 'Fillers', 'Length', ''].map((h) => <th key={h} className="px-5 py-3 font-medium">{h || <span className="sr-only">Delete</span>}</th>)}</tr>
@@ -66,7 +67,7 @@ export default function History() {
                   <td className="px-5 py-3 tabular-nums">{r.wpm} WPM</td>
                   <td className="px-5 py-3 tabular-nums">{r.fillers}</td>
                   <td className="px-5 py-3 tabular-nums">{clock(r.duration)}</td>
-                  <td className="px-5 py-3 text-right"><button className="rounded p-2 text-muted hover:text-red-700" aria-label={`Delete ${r.title}`} onClick={() => remove(r)}><Trash2 size={17} /></button></td>
+                  <td className="px-5 py-3 text-right"><button className="rounded p-2 text-muted hover:text-red-700 dark:hover:text-red-400" aria-label={`Delete ${r.title}`} onClick={() => remove(r)}><Trash2 size={17} /></button></td>
                 </tr>
               ))}
             </tbody>

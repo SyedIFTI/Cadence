@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Link, NavLink, Route, Routes } from 'react-router-dom'
 import { AudioLines } from 'lucide-react'
 import Home from './pages/Home.jsx'
+import ThemeSwitch from './components/ThemeSwitch.jsx'
 import { Loading } from './components/ui.jsx'
 
 // The chart library is only downloaded on pages that need it.
@@ -14,15 +15,18 @@ const linkClass = ({ isActive }) =>
 export default function App() {
   return (
     <>
-      <header className="border-b border-line bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+      <header className="border-b border-line bg-surface">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-y-2 px-5 py-3">
           <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold">
             <AudioLines className="text-brand" aria-hidden /> Cadence
           </Link>
-          <nav className="flex gap-1">
-            <NavLink to="/" className={linkClass}>Analyze</NavLink>
-            <NavLink to="/history" className={linkClass}>History</NavLink>
-          </nav>
+          <div className="flex items-center gap-3">
+            <nav className="flex gap-1">
+              <NavLink to="/" className={linkClass}>Analyze</NavLink>
+              <NavLink to="/history" className={linkClass}>History</NavLink>
+            </nav>
+            <ThemeSwitch />
+          </div>
         </div>
       </header>
       <main className="mx-auto max-w-6xl px-5 py-8">

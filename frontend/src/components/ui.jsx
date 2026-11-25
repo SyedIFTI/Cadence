@@ -10,7 +10,7 @@ export function Loading({ label = 'Loading…' }) {
 
 export function ErrorBox({ children }) {
   return (
-    <p role="alert" className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
+    <p role="alert" className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800 dark:border-red-900 dark:bg-red-950 dark:text-red-200">
       <AlertCircle size={18} className="mt-0.5 shrink-0" aria-hidden /> <span>{children}</span>
     </p>
   )

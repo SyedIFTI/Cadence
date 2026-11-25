@@ -43,7 +43,7 @@ export default function Report() {
         <button className="btn-quiet print:hidden" onClick={() => window.print()}><Printer size={17} aria-hidden /> Print or save PDF</button>
       </div>
 
-      {r.pace.word_count < 60 && <p className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900">This speech is short, so the scores are less reliable. Try speaking for a minute.</p>}
+      {r.pace.word_count < 60 && <p className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200">This speech is short, so the scores are less reliable. Try speaking for a minute.</p>}
 
       <div className="card grid gap-8 lg:grid-cols-[13rem_1fr_1fr]">
         <div>
@@ -64,7 +64,7 @@ export default function Report() {
             {r.tips.map((tip) => (
               <li key={tip.text} className="flex gap-2.5">
                 {tip.kind === 'good'
-                  ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-green-700" aria-label="Going well" />
+                  ? <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-green-700 dark:text-green-400" aria-label="Going well" />
                   : <Lightbulb size={18} className="mt-0.5 shrink-0 text-orange-700" aria-label="Improve" />}
                 <span>{tip.text}</span>
               </li>
@@ -156,8 +156,8 @@ export default function Report() {
       <Section title="Transcript" subtitle="Fillers and repeated words are highlighted, pauses show their length in seconds.">
         <p className="max-w-3xl text-lg leading-9">
           {r.words.map((w, i) => {
-            const style = w.tag === 'filler' ? 'rounded bg-orange-100 px-1 underline decoration-filler decoration-2 underline-offset-4'
-              : w.tag === 'repeat' ? 'rounded bg-emerald-100 px-1 underline decoration-pause decoration-wavy underline-offset-4' : ''
+            const style = w.tag === 'filler' ? 'rounded bg-orange-100 dark:bg-orange-950 px-1 underline decoration-filler decoration-2 underline-offset-4'
+              : w.tag === 'repeat' ? 'rounded bg-emerald-100 dark:bg-emerald-950 px-1 underline decoration-pause decoration-wavy underline-offset-4' : ''
             return (
               <span key={i}>
                 {w.pause && <span className="mx-1 rounded bg-page px-1.5 py-0.5 text-xs tabular-nums text-muted" title="Pause">{w.pause.toFixed(1)}s</span>}

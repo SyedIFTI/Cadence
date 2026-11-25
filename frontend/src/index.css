@@ -1,20 +1,47 @@
 @import "tailwindcss";
 
+/* Screen only, so reports always print in light colours. */
+@custom-variant dark {
+  @media screen {
+    &:where([data-theme="dark"], [data-theme="dark"] *) { @slot; }
+  }
+}
+
 @theme {
   --font-sans: "Instrument Sans Variable", system-ui, sans-serif;
   --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
 
   --color-page: #f3f5f8;
+  --color-surface: #ffffff;
   --color-ink: #14213d;
   --color-muted: #56617a;
   --color-line: #dfe4ec;
   --color-brand: #2370cd;
+  --color-brand-fill: #2370cd;
   --color-brand-soft: #e6f0fc;
+  --color-navy: #14213d; /* Recorder panel: dark in both themes */
 
   /* Chart colours: speech, filler, pause (checked for colour-blind safety) */
   --color-speech: #257de0;
   --color-filler: #f47230;
   --color-pause: #00b894;
+}
+
+:root { color-scheme: light; }
+
+@media screen {
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --color-page: #0d1526;
+    --color-surface: #16213a;
+    --color-ink: #e8edf6;
+    --color-muted: #9aa8c2;
+    --color-line: #2a3856;
+    --color-brand: #6aabf1;
+    --color-brand-soft: #1b3358;
+    --color-navy: #0a1120;
+    --color-speech: #4a97ea;
+  }
 }
 
 @layer base {
@@ -26,10 +53,10 @@
 }
 
 @layer components {
-  .card { @apply rounded-2xl border border-line bg-white p-6; }
+  .card { @apply rounded-2xl border border-line bg-surface p-6; }
   .btn, .btn-primary, .btn-quiet { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 font-medium transition-colors disabled:opacity-50; }
-  .btn-primary { @apply bg-brand text-white hover:bg-[#1b64be]; }
-  .btn-quiet { @apply border border-line bg-white hover:bg-page; }
+  .btn-primary { @apply bg-brand-fill text-white hover:bg-[#1b64be]; }
+  .btn-quiet { @apply border border-line bg-surface hover:bg-page; }
 }
 
 @media (prefers-reduced-motion: reduce) {

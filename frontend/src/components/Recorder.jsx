@@ -91,7 +91,7 @@ export default function Recorder({ onRecorded, onError, disabled }) {
   }
 
   return (
-    <div className="rounded-xl bg-ink p-5 text-white">
+    <div className="rounded-xl bg-navy p-5 text-white">
       <div className="flex h-20 items-center justify-between gap-1" aria-hidden>
         {levels.map((level, i) => (
           <span key={i} className={`w-full rounded-full ${recording ? 'bg-[#6aabf1]' : 'bg-white/25'}`}
@@ -101,9 +101,9 @@ export default function Recorder({ onRecorded, onError, disabled }) {
       <div className="mt-4 flex items-center justify-between">
         <p className="text-2xl tabular-nums" aria-label="Recording time">{clock(seconds)}</p>
         {recording ? (
-          <button onClick={stop} className="btn bg-white text-ink hover:bg-brand-soft"><Square size={16} fill="currentColor" aria-hidden /> Stop recording</button>
+          <button onClick={stop} className="btn bg-white text-navy hover:bg-[#e6f0fc]"><Square size={16} fill="currentColor" aria-hidden /> Stop recording</button>
         ) : (
-          <button onClick={start} disabled={disabled || starting} className="btn bg-filler font-semibold text-ink hover:bg-[#f78a52]"><Mic size={18} aria-hidden /> Start recording</button>
+          <button onClick={start} disabled={disabled || starting} className="btn bg-filler font-semibold text-navy hover:bg-[#f78a52]"><Mic size={18} aria-hidden /> Start recording</button>
         )}
       </div>
     </div>

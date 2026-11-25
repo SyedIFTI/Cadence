@@ -103,7 +103,7 @@ export default function Home() {
           )}
           {error && <ErrorBox>{error}</ErrorBox>}
           {health && !health.groq_key && (
-            <p className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900">
+            <p className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200">
               Add <code>GROQ_API_KEY</code> to <code>backend/.env</code> and restart the backend to analyze your own audio. The sample works without it.
             </p>
           )}
