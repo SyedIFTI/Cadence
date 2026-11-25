@@ -1,0 +1,18 @@
+# Render Blueprint for the backend API (Render → New → Blueprint).
+# Free plan: sleeps after 15 idle minutes, and reports and audio are lost
+# on every restart, redeploy or sleep.
+services:
+  - type: web
+    name: cadence-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: GROQ_API_KEY
+        sync: false   # Render asks for this value when you create the Blueprint
