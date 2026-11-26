@@ -55,18 +55,18 @@ export default function Home() {
 
   return (
     <>
-      <div className="grid items-center gap-10 py-4 lg:grid-cols-[1fr_28rem] lg:py-10">
+      <div className="grid items-center gap-8 py-2 sm:py-4 lg:grid-cols-[1fr_28rem] lg:gap-10 lg:py-10">
         <div>
-          <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Hear how you really sound.</h1>
-          <p className="mt-4 max-w-md text-lg text-muted">
+          <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">Hear how you really sound.</h1>
+          <p className="mt-3 max-w-md text-base text-muted sm:mt-4 sm:text-lg">
             Record a short speech. Cadence finds your fillers, pace, pauses, vocabulary and sentence structure, then scores how clear you are.
           </p>
-          <button className="btn-quiet mt-6" disabled={!!busy} onClick={() => run(analyzeSample, 'sample')}>
+          <button className="btn-quiet mt-6 w-full sm:w-auto" disabled={!!busy} onClick={() => run(analyzeSample, 'sample')}>
             {busy === 'sample' ? <Loader2 className="animate-spin" size={18} aria-hidden /> : <ArrowRight size={18} aria-hidden />} Try a sample speech
           </button>
         </div>
 
-        <div className="card space-y-4"
+        <div className="card space-y-4 p-4 sm:p-6"
           onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
           onDragLeave={() => setDragging(false)}
           onDrop={(e) => { e.preventDefault(); setDragging(false); if (!busy) choose(e.dataTransfer.files[0], 'upload') }}>
@@ -92,7 +92,7 @@ export default function Home() {
             <>
               <Recorder disabled={!!busy} onError={setError} onRecorded={(f) => choose(f, 'mic')} />
               <button onClick={() => input.current.click()} disabled={!!busy}
-                className={`flex w-full flex-col items-center rounded-xl border-2 border-dashed p-6 text-sm ${dragging ? 'border-brand bg-brand-soft' : 'border-line hover:border-brand'}`}>
+                className={`flex w-full flex-col items-center rounded-xl border-2 border-dashed p-5 text-center text-sm sm:p-6 ${dragging ? 'border-brand bg-brand-soft' : 'border-line hover:border-brand'}`}>
                 <Upload className="mb-2 text-brand" aria-hidden />
                 <span className="font-medium">Upload or drop an audio file</span>
                 <span className="text-muted">MP3, WAV, M4A or WebM, up to 10 minutes</span>
@@ -110,9 +110,9 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="mt-10 border-t border-line pt-8">
+      <section className="mt-8 border-t border-line pt-6 sm:mt-10 sm:pt-8">
         <h2 className="text-lg font-semibold">How it works</h2>
-        <ol className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-4 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-5">
           {STEPS.map(([name, text], i) => (
             <li key={name}>
               <p className="font-semibold"><span className="mr-2 text-brand">{i + 1}</span>{name}</p>

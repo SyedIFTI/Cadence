@@ -91,14 +91,14 @@ export default function Recorder({ onRecorded, onError, disabled }) {
   }
 
   return (
-    <div className="rounded-xl bg-navy p-5 text-white">
-      <div className="flex h-20 items-center justify-between gap-1" aria-hidden>
+    <div className="rounded-xl bg-navy p-4 text-white sm:p-5">
+      <div className="flex h-16 items-center justify-between gap-0.5 sm:h-20 sm:gap-1" aria-hidden>
         {levels.map((level, i) => (
           <span key={i} className={`w-full rounded-full ${recording ? 'bg-[#6aabf1]' : 'bg-white/25'}`}
             style={{ height: `${6 + level * 94}%` }} />
         ))}
       </div>
-      <div className="mt-4 flex items-center justify-between">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <p className="text-2xl tabular-nums" aria-label="Recording time">{clock(seconds)}</p>
         {recording ? (
           <button onClick={stop} className="btn bg-white text-navy hover:bg-[#e6f0fc]"><Square size={16} fill="currentColor" aria-hidden /> Stop recording</button>
